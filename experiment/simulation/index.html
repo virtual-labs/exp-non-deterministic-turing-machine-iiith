@@ -1,13 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Add CSS at the head of HTML file -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
-		<!-- Your code goes here-->
+<body style="padding:100px;">
+  <div class="container">
+    <div class="columns is-centered">
+			<div class="column">
+				<div class="v-collapsible-instruction-container v-instruction-container">
+					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a deterministic turing machine</div>
+					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+						<ul style="list-style: disc;">
+							<li> <strong>Change DTM</strong> button switches to a different DTM</li>
+              <li><strong>Change input</strong> changes the input given to the DTM</li>
+              <li><strong>Next</strong> displays the next step in DTM simulation</li>
+              <li><strong>Prev</strong> displays the previous step in DTM simulation</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+  		<div class="column is-2-desktop is-12-tablet is-12-mobile">
+  			<div class="v-datalist-container">
+  				<div class="v-datalist-title">DTM controls</div>
+  				<div class="v-datalist-row" id="toolbar"
+          style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
+            <button id="change_dtm" type="button" name="button" class="v-button">
+              change DTM
+            </button>
+            <button id="change_input" type="button" name="button" class="v-button">
+              change input
+            </button>
+            <button id="next" type="button" name="button" class="v-button">
+              Next
+            </button>
+            <button id="prev" type="button" name="button" class="v-button">
+              Previous
+            </button>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="column is-7-desktop is-12-tablet is-12-mobile">
+  			<div id="circuit-board">
+  				<div id="working-area">
+            <div id="DTM_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
+            </div>
+            <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
+            </div>
+            <div id="transition_table_container" class="is-centered is-flex-direction-row is-align-content-center" style="display: flex; justify-content:center; align-items: center;">
+            </div>
+            <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;">
+              <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
+              </svg>
+              <svg id="canvas2" width='100' height='200' xmlns="http://www.w3.org/2000/svg">
+              </svg>
+              <!-- <rect x="10" y="150" width="80" height="40"
+              style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /> -->
+            </div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="column is-3-desktop is-12-tablet is-12-mobile">
+        <div id="stack_container" style="overflow: auto;">
+          <ul id="stack_list">
+
+          </ul>
+        </div>
+  		</div>
+  	</div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/helper.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
+
+<!--
+
+<div class="container">
+  <div id="header" class="columns is-centered is-flex-direction-column is-flex-wrap-wrap is-align-content-center">
+    <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
+
+    </div>
+    <div class="">
+      <button id="change_dfa" type="button" name="button" class="primary-button">
+        change DFA
+      </button>
+      <button id="change_input" type="button" name="button" class="primary-button">
+        change input
+      </button>
+    </div>
+  </div>
+  <div id="body" class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+    <div class="" style="display:flex;flex-direction:column;align-items:center;">
+      <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
+      </svg>
+    </div>
+    <div id="footer" class="">
+      <button id="next" type="button" name="button" class="primary-button">
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+ -->
