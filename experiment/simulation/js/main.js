@@ -7,12 +7,14 @@ width = 500;
 height = 200;
 radius = 25;
 
-dtm = [dtm1, dtm2];
-dtmIndex = 0
+ndtm = [ndtm1, ndtm2];
+ndtmIndex = 0
 
 stateIndex = 0;
 inputIndex = 0;
 inputPointer = -1;
+
+path_state = "acc";
 
 // nodes = []
 // edges = []
@@ -25,22 +27,19 @@ function refreshCanvas(){
   if(inputPointer != -1){
     console.log("before", inputPointer, curr);
     // console.log(dfa[dfaIndex]["input"]);
-    curr = dtm[dtmIndex]["input"][inputIndex]["states"][inputPointer];
+    curr = ndtm[ndtmIndex]["input"][inputIndex]["states"][inputPointer];
     console.log("after", inputPointer, curr);
   }
 
-  DTMDescriptionContainer = document.getElementById("DTM_description_container");
-  clearElem(DTMDescriptionContainer);
+  NDTMDescriptionContainer = document.getElementById("NDTM_description_container");
+  clearElem(NDTMDescriptionContainer);
   textColor = "black";
   span = newElement("font", [["id", "DTM_description"], ["color", textColor]]);
-  text = document.createTextNode(dtm[dtmIndex]["description"]);
+  text = document.createTextNode(ndtm[ndtmIndex]["description"]);
   span.appendChild(text);
-  DTMDescriptionContainer.appendChild(text);
+  NDTMDescriptionContainer.appendChild(text);
 
-  res = displayCanvas(canvas, canvas2, dtm[dtmIndex], inputIndex, stateIndex);
-
-  // nodes = res[0]
-  // edges = res[1]
+  res = displayCanvas(canvas, canvas2, ndtm[ndtmIndex], inputIndex, stateIndex);
 }
 
 function resetInput(){
@@ -53,10 +52,10 @@ function resetInput(){
 function refreshInput(){
   inputContainer = document.getElementById("input_container");
   clearElem(inputContainer);
-  for(let i=0;i<dtm[dtmIndex]["input"][inputIndex]["string"].length;++i){
+  for(let i=0;i<ndtm[ndtmIndex]["input"][inputIndex]["string"].length;++i){
     textColor = "black";
     span = newElement("font", [["id", "text_"+i], ["color", textColor]]);
-    text = document.createTextNode(dtm[dtmIndex]["input"][inputIndex]["string"][i]);
+    text = document.createTextNode(ndtm[ndtmIndex]["input"][inputIndex]["string"][i]);
     span.appendChild(text);
     inputContainer.appendChild(span);
   }
@@ -96,22 +95,22 @@ function updateTransitions(){
   tr0.appendChild(tr0th0);
   table.appendChild(tr0);
 
-  Object.keys(dtm[dtmIndex]["transition"]["q0"]).forEach(function(keyName, keyIndex){
+  Object.keys(ndtm[ndtmIndex]["transition"]["q0"]).forEach(function(keyName, keyIndex){
   	th = newElement("th", [["id", "tr0_th"+(keyIndex+1)]]);
   	th.appendChild(document.createTextNode(keyName));
   	tr0.appendChild(th);
   });
 
-  Object.keys(dtm[dtmIndex]["transition"]).forEach(function(stateName, stateIndex){
+  Object.keys(ndtm[ndtmIndex]["transition"]).forEach(function(stateName, stateIndex){
   	tr = newElement("tr", [["id", "tr"+(stateIndex+1)]]);
 
   	trtd0 = newElement("td", [["id", "tr"+(stateIndex+1)+"_td0"]]);
   	trtd0.appendChild(document.createTextNode(stateName));
   	tr.appendChild(trtd0);
 
-  	Object.keys(dtm[dtmIndex]["transition"][stateName]).forEach(function(keyName, keyIndex){
+  	Object.keys(ndtm[ndtmIndex]["transition"][stateName]).forEach(function(keyName, keyIndex){
   	  trtd = newElement("td", [["id", "tr"+(stateIndex+1)+"_td"+(keyIndex+1)]]);
-  	  trtd.appendChild(document.createTextNode(dtm[dtmIndex]["transition"][stateName][keyName]));
+  	  trtd.appendChild(document.createTextNode(ndtm[ndtmIndex]["transition"][stateName][keyName]));
   	  tr.appendChild(trtd);
   	});
   	table.appendChild(tr);
@@ -130,12 +129,12 @@ window.addEventListener('load', function(e){
   updateTransitions();
 
   // Event listener for changing DFA
-  changeDTM = document.getElementById("change_dtm");
-  changeDTM.addEventListener("click", function(e){
+  changeNDTM = document.getElementById("change_ndtm");
+  changeNDTM.addEventListener("click", function(e){
     clearElem(canvas);
-    dtmIndex = dtmIndex + 1;
-    if(dtmIndex >= dtm.length){
-      dtmIndex = 0;
+    ndtmIndex = ndtmIndex + 1;
+    if(ndtmIndex >= ndtm.length){
+      ndtmIndex = 0;
     }
     resetInput();
     refreshCanvas();
@@ -147,7 +146,7 @@ window.addEventListener('load', function(e){
   changeInput = document.getElementById("change_input");
   changeInput.addEventListener("click", function(e){
     inputIndex = inputIndex + 1;
-    if(inputIndex >= dtm[dtmIndex]["input"].length){
+    if(inputIndex >= ndtm[ndtmIndex]["input"].length){
       inputIndex = 0;
     }
     stateIndex = 0;
@@ -159,14 +158,13 @@ window.addEventListener('load', function(e){
   // // Event listener for next
   next = document.getElementById("next");
   next.addEventListener("click", function(e){
-    console.log("herer");
-    if(stateIndex != dtm[dtmIndex]["input"][inputIndex]["states"].length-1){
+    if(stateIndex != ndtm[ndtmIndex]["input"][inputIndex]["states"].length-1){
       stateIndex += 1;
       refreshInput();
       refreshCanvas();
     
-      prevState = dtm[dtmIndex]["input"][inputIndex]["states"][stateIndex-1];
-      currState = dtm[dtmIndex]["input"][inputIndex]["states"][stateIndex];
+      prevState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex-1];
+      currState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex];
       str = "read: "+prevState[0][prevState[1]];
       str += ", write: "+currState[0][prevState[1]];
       if(prevState[1] > currState[1]){
@@ -178,9 +176,9 @@ window.addEventListener('load', function(e){
       addToStack(str);
 
 
-      currState = dtm[dtmIndex]["input"][inputIndex]["states"][stateIndex][0];
-      currCell = currState[dtm[dtmIndex]["input"][inputIndex]["states"][stateIndex][1]];
-      if(stateIndex == dtm[dtmIndex]["input"][inputIndex]["states"].length-1){
+      currState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex][0];
+      currCell = currState[ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex][1]];
+      if(stateIndex == ndtm[ndtmIndex]["input"][inputIndex]["states"].length-1){
         if(currCell == "S"){
           swal("Input string was accepted");
         }else{
@@ -237,6 +235,20 @@ window.addEventListener('load', function(e){
       refreshCanvas();
       removeFromStack();
     }
+  });
+
+  // Event linstener for switch
+  path_switch = document.getElementById("path_switch");
+  path_switch.addEventListener("change", function(e){
+    if(path_state == "acc"){
+      path_state = "rej";
+    }else{
+      path_state = "acc";
+    }
+    stateIndex = 0;
+    refreshInput();
+    refreshCanvas();
+    resetStack();
   });
 
 });

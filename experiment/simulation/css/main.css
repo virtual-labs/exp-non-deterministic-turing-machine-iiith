@@ -1,4 +1,13 @@
 /* You CSS goes in here */
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .v-button { margin-bottom: 5px; width: inherit;}
 
 .window { z-index:20; }

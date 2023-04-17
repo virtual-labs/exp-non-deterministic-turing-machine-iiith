@@ -9,13 +9,14 @@
     <div class="columns is-centered">
 			<div class="column">
 				<div class="v-collapsible-instruction-container v-instruction-container">
-					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a deterministic turing machine</div>
+					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a non-deterministic turing machine</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
 						<ul style="list-style: disc;">
-							<li> <strong>Change DTM</strong> button switches to a different DTM</li>
-              <li><strong>Change input</strong> changes the input given to the DTM</li>
+							<li> <strong>Change NDTM</strong> button switches to a different NDTM</li>
+              <li><strong>Change input</strong> changes the input given to the NDTM</li>
               <li><strong>Next</strong> displays the next step in DTM simulation</li>
               <li><strong>Prev</strong> displays the previous step in DTM simulation</li>
+              <li>Toggle <strong>Reject path</strong> to switch between accepting paths and rejecting paths</li>
 						</ul>
 					</div>
 				</div>
@@ -26,11 +27,11 @@
     <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
   		<div class="column is-2-desktop is-12-tablet is-12-mobile">
   			<div class="v-datalist-container">
-  				<div class="v-datalist-title">DTM controls</div>
+  				<div class="v-datalist-title">NDTM controls</div>
   				<div class="v-datalist-row" id="toolbar"
           style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
-            <button id="change_dtm" type="button" name="button" class="v-button">
-              change DTM
+            <button id="change_ndtm" type="button" name="button" class="v-button">
+              change NDTM
             </button>
             <button id="change_input" type="button" name="button" class="v-button">
               change input
@@ -41,13 +42,17 @@
             <button id="prev" type="button" name="button" class="v-button">
               Previous
             </button>
+            <div class="">
+              <input type="checkbox" id="path_switch" />
+              <label for="path_switch">Reject path</label>
+            </div>
   				</div>
   			</div>
   		</div>
   		<div class="column is-7-desktop is-12-tablet is-12-mobile">
   			<div id="circuit-board">
   				<div id="working-area">
-            <div id="DTM_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
+            <div id="NDTM_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
             </div>
             <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
             </div>
