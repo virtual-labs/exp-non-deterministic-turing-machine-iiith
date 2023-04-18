@@ -39,7 +39,7 @@ function refreshCanvas(){
   span.appendChild(text);
   NDTMDescriptionContainer.appendChild(text);
 
-  res = displayCanvas(canvas, canvas2, ndtm[ndtmIndex], inputIndex, stateIndex);
+  res = displayCanvas(canvas, canvas2, ndtm[ndtmIndex], inputIndex, stateIndex, path_state);
 }
 
 function resetInput(){
@@ -158,13 +158,17 @@ window.addEventListener('load', function(e){
   // // Event listener for next
   next = document.getElementById("next");
   next.addEventListener("click", function(e){
-    if(stateIndex != ndtm[ndtmIndex]["input"][inputIndex]["states"].length-1){
+    curr_path = "states";
+    if(path_state == "rej"){
+      curr_path = "reject_path";
+    }
+    if(stateIndex != ndtm[ndtmIndex]["input"][inputIndex][curr_path].length-1){
       stateIndex += 1;
       refreshInput();
       refreshCanvas();
     
-      prevState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex-1];
-      currState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex];
+      prevState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex-1];
+      currState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex];
       str = "read: "+prevState[0][prevState[1]];
       str += ", write: "+currState[0][prevState[1]];
       if(prevState[1] > currState[1]){
@@ -176,9 +180,9 @@ window.addEventListener('load', function(e){
       addToStack(str);
 
 
-      currState = ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex][0];
-      currCell = currState[ndtm[ndtmIndex]["input"][inputIndex]["states"][stateIndex][1]];
-      if(stateIndex == ndtm[ndtmIndex]["input"][inputIndex]["states"].length-1){
+      currState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex][0];
+      currCell = currState[ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex][1]];
+      if(stateIndex == ndtm[ndtmIndex]["input"][inputIndex][curr_path].length-1){
         if(currCell == "S"){
           swal("Input string was accepted");
         }else{
@@ -186,44 +190,6 @@ window.addEventListener('load', function(e){
         }
       }
     }
-    // if(inputPointer != pdfa[pdfaIndex]["input"][inputIndex]["string"].length){
-    //   inputPointer = inputPointer + 1;
-    //   refreshInput();
-    //   refreshCanvas();
-    //   str = "";
-    //   if(inputPointer!=0){
-    //     str += "read character "+pdfa[pdfaIndex]["input"][inputIndex]["string"][inputPointer-1]+",";
-    //     pushDownStackLength = pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer].length;
-    //     prevPushDownStackLength = pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer-1].length;
-    //     if(pushDownStackLength > prevPushDownStackLength){
-    //       str += " pushed "+pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer][pushDownStackLength-1]+" into stack";
-    //     }else if(pushDownStackLength < prevPushDownStackLength){
-    //       str += " popped "+pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer-1][prevPushDownStackLength-1]+" from stack";
-    //     }
-    //     str += " and moved from state "+pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer-1];
-    //     str += " to state "+pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer];
-    //   }
-    //   if(inputPointer==0){
-    //     str += "moved to start state";
-    //   }
-    //   addToStack(str);
-
-    // //   // Display popup at end
-    //   if(==pdfa[pdfaIndex]["input"][inputIndex]["string"].length){
-
-    //     computationStatus = "Rejected";
-
-    //     for(itr=0;itr<pdfa[pdfaIndex]["vertices"].length;++itr){
-    //       if(pdfa[pdfaIndex]["vertices"][itr]["text"] == curr){
-    //         if(pdfa[pdfaIndex]["vertices"][itr]["type"] == "accept"){
-    //           computationStatus = "Accepted";
-    //         }
-    //         break;
-    //       }
-    //     }
-    //     swal("Input string was "+computationStatus);
-    //   }
-    // }
   });
 
   // // Event listener for prev

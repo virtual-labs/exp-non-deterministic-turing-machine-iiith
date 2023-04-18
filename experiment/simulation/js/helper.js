@@ -26,20 +26,23 @@ function clearElem(elem){
 }
 
 // Global variables width, height and radius need to be set before invoking this function
-function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex){
+function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex, path){
   fillColor = "#ffe4c4";
   color = "black";
   stroke_width = "3px";
 
-
-  str = dtm["input"][inputIndex]["states"][stateIndex][0];
+  path_setting = "states";
+  if(path == "rej"){
+    path_setting = "reject_path";
+  }
+  str = dtm["input"][inputIndex][path_setting][stateIndex][0];
   start_x = 10;
   start_y = 10;
   cell_width = 60;
   cell_height = 60;
   
   for(cell_itr=0;cell_itr<str.length;++cell_itr){
-    if(cell_itr == dtm["input"][inputIndex]["states"][stateIndex][1]){
+    if(cell_itr == dtm["input"][inputIndex][path_setting][stateIndex][1]){
       fillColor = "#adff2f";
     }else{
       fillColor = "#ffe4c4";
@@ -63,7 +66,7 @@ function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex){
       ['y', start_y+cell_height/2],
       ['fill', '#000']
     ]);
-    cellText.textContent = dtm["input"][inputIndex]["states"][stateIndex][0][cell_itr];
+    cellText.textContent = dtm["input"][inputIndex][path_setting][stateIndex][0][cell_itr];
     canvas1.appendChild(cellText);
   }
   
@@ -84,7 +87,7 @@ function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex){
       ['y', start_y+cell_height/2],
       ['fill', '#000']
   ]);
-  textElem.textContent = dtm["input"][inputIndex]["states"][stateIndex][2];
+  textElem.textContent = dtm["input"][inputIndex][path_setting][stateIndex][2];
   canvas2.appendChild(state);
   canvas2.appendChild(textElem);
 }
