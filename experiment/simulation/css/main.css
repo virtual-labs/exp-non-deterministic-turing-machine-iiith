@@ -1,6 +1,6 @@
 /* You CSS goes in here */
 
-@media (min-width:402px) {
+@media (min-width:642px) {
   #toggle-button-menu {
     display: none;
   }
@@ -10,7 +10,7 @@
   }
 }
 
-@media (max-width: 401px) {
+@media (max-width: 641px) {
 
   .body-padding {
     padding-top: 100px;
