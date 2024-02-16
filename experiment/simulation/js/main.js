@@ -217,4 +217,59 @@ window.addEventListener('load', function(e){
     resetStack();
   });
 
+  controlContainerDisplay = 0;
+  instructionContainerDisplay = 0;
+  traceContainerDisplay = 0;
+
+  controlsToggle = document.getElementById("ndtm-controls-toggle");
+  controlsToggle.addEventListener("click", function(e){
+    
+    controlContainer = document.getElementById("control-container");
+    
+    if(controlContainerDisplay == 0){
+      controlContainer.classList.remove("control-container-hide");
+      controlContainer.classList.add("control-container-show");
+      controlContainerDisplay = 1;
+    }else{
+      controlContainer.classList.remove("control-container-show");
+      controlContainer.classList.add("control-container-hide");
+      controlContainerDisplay = 0;
+    }
+
+  });
+
+  instructionToggle = document.getElementById("ndtm-instructions-toggle");
+  instructionToggle.addEventListener("click", function(e){
+
+    instructionContainer = document.getElementById("instruction-container");
+
+    if(instructionContainerDisplay == 0){
+      instructionContainer.classList.remove("instruction-container-hide");
+      instructionContainer.classList.add("instruction-container-show");
+      instructionContainerDisplay = 1;
+    }else{
+      instructionContainer.classList.remove("instruction-container-show");
+      instructionContainer.classList.add("instruction-container-hide");
+      instructionContainerDisplay = 0;
+    }
+
+  });
+
+  traceToggle = document.getElementById("ndtm-stack-trace-toggle");
+  traceToggle.addEventListener("click", function(e){
+    
+    traceContainer = document.getElementById("trace-container");
+
+    if(traceContainerDisplay == 0){
+      traceContainer.classList.remove("trace-container-hide");
+      traceContainer.classList.add("trace-container-show");
+      traceContainerDisplay = 1;
+    }else{
+      traceContainer.classList.remove("trace-container-show");
+      traceContainer.classList.add("trace-container-hide");
+      traceContainerDisplay = 0;
+    }
+
+  });
+
 });

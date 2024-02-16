@@ -1,4 +1,169 @@
 /* You CSS goes in here */
+
+@media (min-width:402px) {
+  #toggle-button-menu {
+    display: none;
+  }
+
+  .body-padding {
+    padding: 100px;
+  }
+}
+
+@media (max-width: 401px) {
+
+  .body-padding {
+    padding-top: 100px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .control-container-hide {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  .control-container-show {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  .instruction-container-background {
+    background-color: #f1f1f1;
+  }
+
+  .instruction-container-hide {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  .instruction-container-show {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  .trace-container-hide {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  .trace-container-show {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+
+  #toggle-button-menu {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+    width: 100%;
+/*    background-color: darkred;*/
+  }
+
+  .toggle-control-menu {
+/*    position: fixed;*/
+    /*top: 20px;
+    left: 20px;*/
+    z-index: 1;
+    padding: 0.8em 1em;
+    transform: scale(0.9);
+
+    border: none;
+    color: #fff;
+    background-color: #288ec8;
+    text-align: center;
+    font-size: 1.05rem;
+    border-radius: 1em;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+  }
+
+  .toggle-stack-trace-menu {
+/*    position: fixed;*/
+    /*top: 20px;
+    right: 20px;*/
+    z-index: 1;
+    padding: 0.8em 1em;
+    transform: scale(0.9);
+
+    border: none;
+    color: #fff;
+    background-color: #288ec8;
+    text-align: center;
+    font-size: 1.05rem;
+    border-radius: 1em;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+  }
+
+  .toggle-instruction-menu {
+/*    position: fixed;*/
+    /*top: 20px;
+    right: 20px;*/
+    z-index: 1;
+    padding: 0.8em 1em;
+    transform: scale(0.9);
+
+    border: none;
+    color: #fff;
+    background-color: #288ec8;
+    text-align: center;
+    font-size: 1.05rem;
+    border-radius: 1em;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+  }
+
+}
+
+
+
+
+
 table, th, td {
   border: 1px solid black;
 }
