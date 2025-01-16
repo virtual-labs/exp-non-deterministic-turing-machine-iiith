@@ -5,7 +5,6 @@
 3. [Pushdown Automata (PDA)](https://virtual-labs.github.io/exp-pushdown-automaton-iiith/)
 4. [Deterministic Turing Machines (DTM)](https://virtual-labs.github.io/exp-deterministic-turing-machine-iiith/)
 
-# Non Deterministic Turing Machine
 
 ### Visualising Turing Machines
 
