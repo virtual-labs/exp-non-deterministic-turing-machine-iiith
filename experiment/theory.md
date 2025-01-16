@@ -1,12 +1,24 @@
+
+# Non Deterministic Turing Machine
+
+Status: First Draft (2)
+
+
+    
+
+
 # Visualising Turing Machines
 
 If you have read the previous article on Deterministic Turing Machines, you probably already have some idea about its workings. In this article, we dive a little deeper into Non Deterministic Turing Machines. To make it a little easier to imagine, let’s set up an analogy.
+
+
 
 ![Untitled](images/Untitled1.png)
 
 Imagine a Turing Machine as a librarian in an infinitely long 1D library. Each book (symbol) on the shelves (tape cells) named $S_i$  is subject to the librarian's assessment. Following a set of rules based on the librarian’s brain/mental state (the state table), the librarian moves along the shelves, reading and rearranging books, with each action determined by the current state and the book in hand. The librarian can place a book (symbol), overwrite, or delete it.
 
 ![Untitled](images/Untitled2.png)
+
 
 ### **Non-Determinism**
 
@@ -18,11 +30,13 @@ So far, it’s pretty simple. Given the current state of the library, and a the 
 
 Now, picture our librarian suddenly gaining the ability to replicate at each decision point, with each clone exploring a different shelf. This is the essence of non-determinism in Non-Deterministic Turing Machines (NDTMs). Each clone represents a different potential computation pathway, exploring various solutions in parallel.
 
-![It’s probably a little easier to understand why we cannot implement this in real life. It would require us to magically multiply our resources, and parallelise processes this way.](images/Untitled3.png)
+It’s probably a little easier to understand why we cannot implement this in real life. It would require us to magically multiply our resources, and parallelise processes this way.
+
 
 **Despite their differences, DTMs and NDTMs are two sides of the same coin, each capable of emulating the other, reflecting universal aspects of computational theory.**
 
 In DFA, NFA, PDA’s, we remember transitioning from states using a state symbol. We represent each state using the current “snapshot” of the tape. The following could be understood as the state diagram for a deterministic turing machine.
+
 
 ![Untitled](images/Untitled4.png)
 
@@ -33,6 +47,7 @@ In solving NP (Non-deterministic Polynomial time) problems, the machine's abilit
 </aside>
 
 ![Untitled](images/Untitled5.png)
+
 
 ### Language Hierarchy and Computability
 
@@ -59,6 +74,15 @@ There are problems for which it is currently unknown whether deterministic Turin
     
     The class NP can be defined in two ways, and we show the equivalence as follows.
 
+    
+
+### **NDTM solves in polynomial time = Solution Can be verified in polynomial time**
+
+- **Equivalence of Statements**: The statement "problems solvable by NDTMs in polynomial time" is essentially equivalent to "problems verifiable by DTM’s in polynomial time".
+    - Why? If an NDTM can solve a problem in polynomial time, it means there is a polynomial sized computation path where the NDTM guesses the correct solution. This directly implies that if we were to provide this guessed solution to a deterministic Turing Machine, it could verify the correctness of this solution in polynomial time, placing the problem in NP.
+- **Fundamental Nature of NP**: The class NP is defined based on this verification capability. The fact that an NDTM can solve a problem in polynomial time is essentially the same as saying that a solution to the problem can be verified in polynomial time because the NDTM's ability to 'solve' the problem hinges on its capability to non-deterministically *always* 'traverse' the right solution path .
+
+
 ### Examples Problems in NP
 
 ### Sudoku
@@ -82,7 +106,9 @@ The Traveling Salesman Problem (TSP) is a classic problem in computer science an
 - **Problem Statement**: Given a list of cities and the distances between each pair of cities, the task is to find the shortest possible route that visits each city exactly once and returns to the origin city.
 - **Significance**: TSP is a prototypical NP-hard problem used to study optimization and computational complexity in algorithm design. It has practical applications in logistics, planning, and the manufacturing of microchips.
 
+
 ![Untitled](images/Untitled6.png)
+
 
 ### Different Versions
 
@@ -96,7 +122,9 @@ The Traveling Salesman Problem (TSP) is a classic problem in computer science an
     - **Beyond NP**: Unlike the decision version, the optimization version asks for the 'best' solution (the shortest route) rather than a 'yes' or 'no' answer. It is not about verifying a given solution but finding the optimal one. Such problems are called NP Hard, which, roughly means “As hard as or harder than the hardest problems in NP”.
 
 <aside>
-**NP-Hardness**
+
+💡 **NP-Hardness**
+
 A problem is NP-hard if every problem in NP can be transformed into it in polynomial time. Essentially, NP-hard problems are as hard as or harder than the hardest problems in NP.
 
 </aside>
@@ -105,4 +133,6 @@ A problem is NP-hard if every problem in NP can be transformed into it in polyno
 
 - It's important to note that NDTMs are theoretical constructs. In practical computing, we don't have machines that can genuinely process multiple paths simultaneously to the extent an NDTM can in theory.
 - PDTM’s are not the same as NDTM’s. PDTM’s choose a branch of computation based on a probability distribution. So such a machine takes *one* path. An NDTM (theoretically) traverses all the diverging paths.
+
 - Discussing non deterministic turing machines is helpful to examine problems such as “Is P = NP?”
+
