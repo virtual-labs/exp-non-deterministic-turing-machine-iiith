@@ -1,4 +1,3 @@
-### Pre-requisites
 
 ### Pre-requisites
 1. [Language acceptance by Deterministic Finite Automata](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/)
@@ -8,7 +7,7 @@
 
 # Non Deterministic Turing Machine
 
-## Visualising Turing Machines
+### Visualising Turing Machines
 
 If you have read the previous article on Deterministic Turing Machines, you probably already have some idea about its workings. In this article, we dive a little deeper into Non Deterministic Turing Machines. To make it a little easier to imagine, let’s set up an analogy.
 
