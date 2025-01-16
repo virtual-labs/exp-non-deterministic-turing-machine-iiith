@@ -2,37 +2,88 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "The exploration of multiple paths in a non-deterministic Turing machine (NDTM) is significant because it:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Guarantees a solution to NP problems",
+        "b": "Demonstrates a (theoretical) way to solve problems that may not be efficiently solvable by deterministic machines",
+        "c": "Makes NDTMs faster than deterministic machines",
+        "d": "Allows NDTMs to solve problems outside of NP"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "A deterministic Turing machine is characterized by:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Exploring multiple computational paths simultaneously",
+        "b": "Making random decisions at each step",
+        "c": "Following a single, defined computational path for a given input",
+        "d": "Solving problems that non-deterministic machines cannot"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement is true about regular languages?",
+      "answers": {
+        "a": "They can only be recognized by non-deterministic machines",
+        "b": "They are more complex than context-free languages",
+        "c": "They are recognized by both deterministic and non-deterministic finite automata",
+        "d": "They require Turing machines (or higher) for recognition"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does it mean for a problem to be NP-hard?",
+      "answers": {
+        "a": "It can be solved in polynomial time",
+        "b": "Its solution can be verified in polynomial time",
+        "c": "It is at least as hard as the hardest problems in NP",
+        "d": "It is solvable by non-deterministic machines only"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In computational theory, 'NP' refers to problems where:",
+      "answers": {
+        "a": "Solutions can be found in non-polynomial time",
+        "b": "Solutions can be verified in polynomial time by a DTM",
+        "c": "Deterministic machines can find solutions faster than non-deterministic machines",
+        "d": "Solutions are always available but hard to compute"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]

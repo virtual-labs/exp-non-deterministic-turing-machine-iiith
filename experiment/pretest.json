@@ -2,37 +2,88 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What distinguishes non-deterministic algorithms from deterministic ones?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Non-deterministic algorithms can guess the correct solution in one step",
+        "b": "Non-deterministic algorithms are faster than deterministic ones",
+        "c": "Non-deterministic algorithms always provide the correct answer",
+        "d": "Non-deterministic algorithms can follow multiple potential computational paths at each step"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "a",
+      "correctAnswer": "d",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which of the following problems is known to be in NP?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Determining if a number is prime",
+        "b": "Computing the greatest common divisor",
+        "c": "Verifying the solution of a Sudoku puzzle",
+        "d": "Sorting a list of numbers"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the significance of Turing machines in the context of regular expressions (regex)?",
+      "answers": {
+        "a": "Turing machines can generate regex",
+        "b": "Turing machines can recognize languages defined by regex",
+        "c": "Regex are used to program Turing machines",
+        "d": "Turing machines can convert regex into context-free grammars"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In theoretical computer science, 'P' refers to the class of problems that:",
+      "answers": {
+        "a": "Are impossible to solve",
+        "b": "Can be solved in polynomial time",
+        "c": "Can only be solved by non-deterministic machines",
+        "d": "Have solutions that cannot be verified"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the primary focus of the 'P vs NP' problem?",
+      "answers": {
+        "a": "Determining if every problem in NP is also in P",
+        "b": "Comparing the efficiency of deterministic and non-deterministic machines",
+        "c": "Solving NP-hard problems in polynomial time",
+        "d": "Developing faster algorithms for NP problems"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
   ]
