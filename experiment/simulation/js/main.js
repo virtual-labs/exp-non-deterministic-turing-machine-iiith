@@ -1,5 +1,5 @@
 /*****
- * File containing main logic to display DFA
+ * File containing main logic to display NDTM
  *
  */
 
@@ -8,7 +8,7 @@ height = 200;
 radius = 25;
 
 ndtm = [ndtm1, ndtm2];
-ndtmIndex = 0
+ndtmIndex = 0;
 
 stateIndex = 0;
 inputIndex = 0;
@@ -16,110 +16,138 @@ inputPointer = -1;
 
 path_state = "acc";
 
-// nodes = []
-// edges = []
-
-function refreshCanvas(){
+function refreshCanvas() {
   clearElem(canvas);
   clearElem(canvas2);
 
-  curr = "";
-  if(inputPointer != -1){
-    console.log("before", inputPointer, curr);
-    // console.log(dfa[dfaIndex]["input"]);
+  let curr = "";
+  if (inputPointer !== -1) {
     curr = ndtm[ndtmIndex]["input"][inputIndex]["states"][inputPointer];
-    console.log("after", inputPointer, curr);
   }
 
-  NDTMDescriptionContainer = document.getElementById("NDTM_description_container");
+  const NDTMDescriptionContainer = document.getElementById(
+    "NDTM_description_container"
+  );
   clearElem(NDTMDescriptionContainer);
-  textColor = "black";
-  span = newElement("font", [["id", "DTM_description"], ["color", textColor]]);
-  text = document.createTextNode(ndtm[ndtmIndex]["description"]);
-  span.appendChild(text);
-  NDTMDescriptionContainer.appendChild(text);
 
-  res = displayCanvas(canvas, canvas2, ndtm[ndtmIndex], inputIndex, stateIndex, path_state);
+  const span = newElement("span", [
+    ["id", "NDTM_description"],
+    ["style", "color: brown; font-size: 2 rem;"],
+  ]);
+  const text = document.createTextNode(ndtm[ndtmIndex]["description"]);
+  span.appendChild(text);
+  NDTMDescriptionContainer.appendChild(span);
+
+  displayCanvas(
+    canvas,
+    canvas2,
+    ndtm[ndtmIndex],
+    inputIndex,
+    stateIndex,
+    path_state
+  );
 }
 
-function resetInput(){
+function resetInput() {
   inputIndex = 0;
   stateIndex = 0;
+  inputPointer = -1;
 
   refreshInput();
 }
 
-function refreshInput(){
-  inputContainer = document.getElementById("input_container");
+function refreshInput() {
+  const inputContainer = document.getElementById("input_container");
   clearElem(inputContainer);
-  for(let i=0;i<ndtm[ndtmIndex]["input"][inputIndex]["string"].length;++i){
-    textColor = "black";
-    span = newElement("font", [["id", "text_"+i], ["color", textColor]]);
-    text = document.createTextNode(ndtm[ndtmIndex]["input"][inputIndex]["string"][i]);
+
+  const inputString = ndtm[ndtmIndex]["input"][inputIndex]["string"];
+
+  for (let i = 0; i < inputString.length; i++) {
+    const textColor = inputPointer === i ? "red" : "black";
+
+    const span = newElement("span", [
+      ["id", "text_" + i],
+      ["style", `color: ${textColor}; font-size: 2.5 rem;`], // Restored input font size
+    ]);
+
+    const text = document.createTextNode(inputString[i]);
     span.appendChild(text);
+
     inputContainer.appendChild(span);
   }
 }
 
-function resetStack(){
-  stack = document.getElementById("stack_list");
+function resetStack() {
+  const stack = document.getElementById("stack_list");
   clearElem(stack);
 }
 
-function addToStack(str){
-  stack = document.getElementById("stack_list");
-  listElem = newElement("li", []);
-  textNode = document.createTextNode(str);
-  listElem.appendChild(textNode)
+function addToStack(str) {
+  const stack = document.getElementById("stack_list");
+  const listElem = newElement("li", []);
+  const textNode = document.createTextNode(str);
+  listElem.appendChild(textNode);
   stack.appendChild(listElem);
-
 }
 
-function removeFromStack(){
-  stack = document.getElementById("stack_list");
-  if(stack.firstChild){
+function removeFromStack() {
+  const stack = document.getElementById("stack_list");
+  if (stack.firstChild) {
     stack.removeChild(stack.lastChild);
   }
 }
 
-function updateTransitions(){
-  transitionTable = document.getElementById("transition_table_container");
+function updateTransitions() {
+  const transitionTable = document.getElementById("transition_table_container");
   clearElem(transitionTable);
 
-  table = newElement("table", [["id", "transition_table"]]);
+  const table = newElement("table", [["id", "transition_table"]]);
 
-  tr0 = newElement("tr", [["id", "tr0"]]);
+  const tr0 = newElement("tr", [["id", "tr0"]]);
 
-  tr0th0 = newElement("th", [["id", "tr0_th0"]]);
-  tr0th0.appendChild(document.createTextNode("state"));
+  const tr0th0 = newElement("th", [["id", "tr0_th0"]]);
+  tr0th0.appendChild(document.createTextNode("State"));
   tr0.appendChild(tr0th0);
   table.appendChild(tr0);
 
-  Object.keys(ndtm[ndtmIndex]["transition"]["q0"]).forEach(function(keyName, keyIndex){
-  	th = newElement("th", [["id", "tr0_th"+(keyIndex+1)]]);
-  	th.appendChild(document.createTextNode(keyName));
-  	tr0.appendChild(th);
+  Object.keys(ndtm[ndtmIndex]["transition"]["q0"]).forEach(function (
+    keyName,
+    keyIndex
+  ) {
+    const th = newElement("th", [["id", "tr0_th" + (keyIndex + 1)]]);
+    th.appendChild(document.createTextNode(keyName));
+    tr0.appendChild(th);
   });
 
-  Object.keys(ndtm[ndtmIndex]["transition"]).forEach(function(stateName, stateIndex){
-  	tr = newElement("tr", [["id", "tr"+(stateIndex+1)]]);
+  Object.keys(ndtm[ndtmIndex]["transition"]).forEach(function (
+    stateName,
+    stateIndex
+  ) {
+    const tr = newElement("tr", [["id", "tr" + (stateIndex + 1)]]);
 
-  	trtd0 = newElement("td", [["id", "tr"+(stateIndex+1)+"_td0"]]);
-  	trtd0.appendChild(document.createTextNode(stateName));
-  	tr.appendChild(trtd0);
+    const trtd0 = newElement("td", [["id", "tr" + (stateIndex + 1) + "_td0"]]);
+    trtd0.appendChild(document.createTextNode(stateName));
+    tr.appendChild(trtd0);
 
-  	Object.keys(ndtm[ndtmIndex]["transition"][stateName]).forEach(function(keyName, keyIndex){
-  	  trtd = newElement("td", [["id", "tr"+(stateIndex+1)+"_td"+(keyIndex+1)]]);
-  	  trtd.appendChild(document.createTextNode(ndtm[ndtmIndex]["transition"][stateName][keyName]));
-  	  tr.appendChild(trtd);
-  	});
-  	table.appendChild(tr);
+    Object.keys(ndtm[ndtmIndex]["transition"][stateName]).forEach(function (
+      keyName,
+      keyIndex
+    ) {
+      const trtd = newElement("td", [
+        ["id", "tr" + (stateIndex + 1) + "_td" + (keyIndex + 1)],
+      ]);
+      trtd.appendChild(
+        document.createTextNode(ndtm[ndtmIndex]["transition"][stateName][keyName])
+      );
+      tr.appendChild(trtd);
+    });
+    table.appendChild(tr);
   });
 
   transitionTable.appendChild(table);
 }
 
-window.addEventListener('load', function(e){
+window.addEventListener("load", function () {
   canvas = document.getElementById("canvas1");
   canvas2 = document.getElementById("canvas2");
 
@@ -128,148 +156,82 @@ window.addEventListener('load', function(e){
   resetStack();
   updateTransitions();
 
-  // Event listener for changing DFA
-  changeNDTM = document.getElementById("change_ndtm");
-  changeNDTM.addEventListener("click", function(e){
+  // Change NDTM
+  const changeNDTM = document.getElementById("change_ndtm");
+  changeNDTM.addEventListener("click", function () {
     clearElem(canvas);
-    ndtmIndex = ndtmIndex + 1;
-    if(ndtmIndex >= ndtm.length){
-      ndtmIndex = 0;
-    }
+    ndtmIndex = (ndtmIndex + 1) % ndtm.length;
     resetInput();
     refreshCanvas();
     resetStack();
     updateTransitions();
   });
 
-  // Event listener for changing input
-  changeInput = document.getElementById("change_input");
-  changeInput.addEventListener("click", function(e){
-    inputIndex = inputIndex + 1;
-    if(inputIndex >= ndtm[ndtmIndex]["input"].length){
-      inputIndex = 0;
-    }
+  // Change Input
+  const changeInput = document.getElementById("change_input");
+  changeInput.addEventListener("click", function () {
+    inputIndex = (inputIndex + 1) % ndtm[ndtmIndex]["input"].length;
     stateIndex = 0;
+    inputPointer = -1;
     refreshInput();
     refreshCanvas();
     resetStack();
   });
 
-  // // Event listener for next
-  next = document.getElementById("next");
-  next.addEventListener("click", function(e){
-    curr_path = "states";
-    if(path_state == "rej"){
-      curr_path = "reject_path";
-    }
-    if(stateIndex != ndtm[ndtmIndex]["input"][inputIndex][curr_path].length-1){
-      stateIndex += 1;
+  // Next Step
+  const next = document.getElementById("next");
+  next.addEventListener("click", function () {
+    const currPath = path_state === "rej" ? "reject_path" : "states";
+    if (
+      stateIndex <
+      ndtm[ndtmIndex]["input"][inputIndex][currPath].length - 1
+    ) {
+      stateIndex++;
+      inputPointer = stateIndex; // Update pointer
       refreshInput();
       refreshCanvas();
-    
-      prevState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex-1];
-      currState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex];
-      str = "read: "+prevState[0][prevState[1]];
-      str += ", write: "+currState[0][prevState[1]];
-      if(prevState[1] > currState[1]){
-        str += ", move left";
-      }else{
-        str += ", move right";
-      }
-      str += ", new state: "+currState[2];
+
+      const prevState =
+        ndtm[ndtmIndex]["input"][inputIndex][currPath][stateIndex - 1];
+      const currState =
+        ndtm[ndtmIndex]["input"][inputIndex][currPath][stateIndex];
+
+      let str = `read: ${prevState[0][prevState[1]]}, write: ${currState[0][prevState[1]]}`;
+      str += prevState[1] > currState[1] ? ", move left" : ", move right";
+      str += `, new state: ${currState[2]}`;
       addToStack(str);
 
-
-      currState = ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex][0];
-      currCell = currState[ndtm[ndtmIndex]["input"][inputIndex][curr_path][stateIndex][1]];
-      if(stateIndex == ndtm[ndtmIndex]["input"][inputIndex][curr_path].length-1){
-        if(currCell == "S"){
-          swal("Input string was accepted");
-        }else{
-          swal("Input string was rejected");
-        }
+      const currCell =
+        currState[ndtm[ndtmIndex]["input"][inputIndex][currPath][stateIndex][1]];
+      if (
+        stateIndex ===
+        ndtm[ndtmIndex]["input"][inputIndex][currPath].length - 1
+      ) {
+        swal(currCell === "S" ? "Input string was accepted" : "Input string was rejected");
       }
     }
   });
 
-  // // Event listener for prev
-  prev = document.getElementById("prev");
-  prev.addEventListener("click", function(e){
-    if(stateIndex != 0){
-      stateIndex = stateIndex - 1;
+  // Previous Step
+  const prev = document.getElementById("prev");
+  prev.addEventListener("click", function () {
+    if (stateIndex > 0) {
+      stateIndex--;
+      inputPointer = stateIndex; // Update pointer
       refreshInput();
       refreshCanvas();
       removeFromStack();
     }
   });
 
-  // Event linstener for switch
-  path_switch = document.getElementById("path_switch");
-  path_switch.addEventListener("change", function(e){
-    if(path_state == "acc"){
-      path_state = "rej";
-    }else{
-      path_state = "acc";
-    }
+  // Switch Path
+  const pathSwitch = document.getElementById("path_switch");
+  pathSwitch.addEventListener("change", function () {
+    path_state = path_state === "acc" ? "rej" : "acc";
     stateIndex = 0;
+    inputPointer = -1;
     refreshInput();
     refreshCanvas();
     resetStack();
   });
-
-  controlContainerDisplay = 0;
-  instructionContainerDisplay = 0;
-  traceContainerDisplay = 0;
-
-  controlsToggle = document.getElementById("ndtm-controls-toggle");
-  controlsToggle.addEventListener("click", function(e){
-    
-    controlContainer = document.getElementById("control-container");
-    
-    if(controlContainerDisplay == 0){
-      controlContainer.classList.remove("control-container-hide");
-      controlContainer.classList.add("control-container-show");
-      controlContainerDisplay = 1;
-    }else{
-      controlContainer.classList.remove("control-container-show");
-      controlContainer.classList.add("control-container-hide");
-      controlContainerDisplay = 0;
-    }
-
-  });
-
-  instructionToggle = document.getElementById("ndtm-instructions-toggle");
-  instructionToggle.addEventListener("click", function(e){
-
-    instructionContainer = document.getElementById("instruction-container");
-
-    if(instructionContainerDisplay == 0){
-      instructionContainer.classList.remove("instruction-container-hide");
-      instructionContainer.classList.add("instruction-container-show");
-      instructionContainerDisplay = 1;
-    }else{
-      instructionContainer.classList.remove("instruction-container-show");
-      instructionContainer.classList.add("instruction-container-hide");
-      instructionContainerDisplay = 0;
-    }
-
-  });
-
-  traceToggle = document.getElementById("ndtm-stack-trace-toggle");
-  traceToggle.addEventListener("click", function(e){
-    
-    traceContainer = document.getElementById("trace-container");
-
-    if(traceContainerDisplay == 0){
-      traceContainer.classList.remove("trace-container-hide");
-      traceContainer.classList.add("trace-container-show");
-      traceContainerDisplay = 1;
-    }else{
-      traceContainer.classList.remove("trace-container-show");
-      traceContainer.classList.add("trace-container-hide");
-      traceContainerDisplay = 0;
-    }
-
-  });
-
 });
