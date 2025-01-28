@@ -1,126 +1,100 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
+
 <body class="body-padding">
   <div class="container">
     <div class="columns is-centered">
-			<div id="instruction-container" class="column instruction-container-hide">
-				<div class="v-collapsible-instruction-container v-instruction-container instruction-container-background">
-					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a non-deterministic turing machine</div>
-					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ul style="list-style: disc;">
-							<li> <strong>Change NDTM</strong> button switches to a different NDTM</li>
-              <li><strong>Change input</strong> changes the input given to the NDTM</li>
-              <li><strong>Next</strong> displays the next step in DTM simulation</li>
-              <li><strong>Prev</strong> displays the previous step in DTM simulation</li>
+      <div id="instruction-container" class="column">
+        <div class="v-collapsible-instruction-container v-instruction-container instruction-container-background">
+          <div id="instruction-title" class="v-collapsible is-size-5">Instructions</div>
+          <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+            <ul style="list-style: disc;">
+              <li> <strong>Change NDTM</strong> button switches to a different NDTM</li>
+              <li><strong>Change Input</strong> changes the input given to the NDTM</li>
+              <li><strong>Next Step</strong> displays the next step in DTM simulation</li>
+              <li><strong>Previous Step</strong> displays the previous step in DTM simulation</li>
               <li>Toggle <strong>Reject path</strong> to switch between accepting paths and rejecting paths</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-  </div>
-
-    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
-  		<div id="control-container" class="column is-2-desktop is-12-tablet is-12-mobile control-container-hide">
-  			<div class="v-datalist-container" style="height:450px;">
-  				<div class="v-datalist-title">NDTM controls</div>
-  				<div class="v-datalist-row" id="toolbar"
-          style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
-            <button id="change_ndtm" type="button" name="button" class="v-button">
-              change NDTM
-            </button>
-            <button id="change_input" type="button" name="button" class="v-button">
-              change input
-            </button>
-            <button id="next" type="button" name="button" class="v-button">
-              Next
-            </button>
-            <button id="prev" type="button" name="button" class="v-button">
-              Previous
-            </button>
-            <div class="">
-              <input type="checkbox" id="path_switch" />
-              <label for="path_switch">Reject path</label>
-            </div>
-  				</div>
-  			</div>
-  		</div>
-  		<div class="column is-7-desktop is-12-tablet is-12-mobile">
-  			<div class="v-datalist-container" style="height:450px;" id="circuit-board">
-  				<div id="working-area">
-            <div id="NDTM_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
-            </div>
-            <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
-            </div>
-            <div id="transition_table_container" class="is-centered is-flex-direction-row is-align-content-center" style="display: flex; justify-content:center; align-items: center;">
-            </div>
-            <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;">
-              <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
-              </svg>
-              <svg id="canvas2" width='100' height='200' xmlns="http://www.w3.org/2000/svg">
-              </svg>
-              <!-- <rect x="10" y="150" width="80" height="40"
-              style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /> -->
-            </div>
-  				</div>
-  			</div>
-  		</div>
-  		<div id="trace-container" class="column is-3-desktop is-12-tablet is-12-mobile trace-container-hide">
-        <div class="v-datalist-container" style="height:450px;" id="stack_container">
-          <ul id="stack_list" style="height:400px;overflow-y:auto;">
-
-          </ul>
+            </ul>
+          </div>
         </div>
-  		</div>
-  	</div>
+      </div>
+    </div>
+  </div>
 
-    <div id="toggle-button-menu">
-      <button id="ndtm-controls-toggle" class="toggle-control-menu">Controls</button>
-      <button id="ndtm-instructions-toggle" class="toggle-instruction-menu">Instructions</button>
-      <button id="ndtm-stack-trace-toggle" class="toggle-stack-trace-menu">Trace</button>
+  </br>
+  </br>
+  </br>
+  </br>
+
+  <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+    <div id="control-container" class="column is-3-desktop is-12-tablet is-12-mobile" style="align-self: center;">
+      <div class="v-datalist-container" style="height:400px;">
+        <div class="v-datalist-title">NDTM controls</div>
+        <div class="v-datalist-row" id="toolbar"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <button id="change_ndtm" type="button" name="button" class="v-button">
+            Change NDTM
+          </button>
+          <button id="change_input" type="button" name="button" class="v-button">
+            Change input
+          </button>
+          <button id="next" type="button" name="button" class="v-button">
+            Next Step
+          </button>
+          <button id="prev" type="button" name="button" class="v-button">
+            Previous Step
+          </button>
+          <div class="">
+            <input type="checkbox" id="path_switch" />
+            <label for="path_switch">Reject path</label>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./js/helper.js"></script>
-    <script src="./js/data.js"></script>
-    <script src="./js/main.js"></script>
+    <div class="column is-6-desktop is-12-tablet is-12-mobile">
+      <div class="v-datalist-container" style="height:450px;" id="circuit-board">
+        <div id="working-area">
+          <div id="NDTM_description_container"
+            class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
+          </div>
+          <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
+          </div>
+          <div id="transition_table_container" class="is-centered is-flex-direction-row is-align-content-center"
+            style="display: flex; justify-content:center; align-items: center;">
+          </div>
+          <br>
+          <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
+            <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
+            </svg>
+            <svg id="canvas2" width='100' height='200' xmlns="http://www.w3.org/2000/svg">
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="trace-container" class="column is-3-desktop is-12-tablet is-12-mobile" style="align-self: center;">
+      <div class="v-datalist-container" style="height:400px;" id="stack_container">
+        <div class="v-datalist-title">Steps</div>
+        <ul id="stack_list" style="height:400px;overflow-y:auto;">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="./js/helper.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/main.js"></script>
 </body>
+
 </html>
-
-<!--
-
-<div class="container">
-  <div id="header" class="columns is-centered is-flex-direction-column is-flex-wrap-wrap is-align-content-center">
-    <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
-
-    </div>
-    <div class="">
-      <button id="change_dfa" type="button" name="button" class="primary-button">
-        change DFA
-      </button>
-      <button id="change_input" type="button" name="button" class="primary-button">
-        change input
-      </button>
-    </div>
-  </div>
-  <div id="body" class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
-    <div class="" style="display:flex;flex-direction:column;align-items:center;">
-      <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
-      </svg>
-    </div>
-    <div id="footer" class="">
-      <button id="next" type="button" name="button" class="primary-button">
-        Next
-      </button>
-    </div>
-  </div>
-</div>
-
- -->

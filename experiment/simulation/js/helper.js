@@ -24,70 +24,87 @@ function clearElem(elem){
     elem.removeChild(elem.lastChild);
   }
 }
-
 // Global variables width, height and radius need to be set before invoking this function
-function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex, path){
-  fillColor = "#ffe4c4";
-  color = "black";
-  stroke_width = "3px";
+function displayCanvas(canvas, canvas2, dtm, inputIndex, stateIndex, path) {
+  const fillDefault = "#ffe4c4";
+  const fillActive = "#adff2f";
+  const color = "black";
+  const strokeWidth = "3px";
 
-  path_setting = "states";
-  if(path == "rej"){
-    path_setting = "reject_path";
-  }
-  str = dtm["input"][inputIndex][path_setting][stateIndex][0];
-  start_x = 10;
-  start_y = 10;
-  cell_width = 60;
-  cell_height = 60;
-  
-  for(cell_itr=0;cell_itr<str.length;++cell_itr){
-    if(cell_itr == dtm["input"][inputIndex][path_setting][stateIndex][1]){
-      fillColor = "#adff2f";
-    }else{
-      fillColor = "#ffe4c4";
-    }
-    cell = newElementNS('rect', [
-      ["id", "state_rect"],
-      ["x", start_x+(cell_itr*cell_width)],
-      ["y", start_y],
-      ["width", cell_width],
-      ["height", cell_height],
+  const pathSetting = path === "rej" ? "reject_path" : "states";
+  const str = dtm["input"][inputIndex][pathSetting][stateIndex][0];
+  const activeCellIndex = dtm["input"][inputIndex][pathSetting][stateIndex][1];
+  const currentState = dtm["input"][inputIndex][pathSetting][stateIndex][2];
+
+  const startX = 10;
+  const startY = 10;
+  const cellWidth = 60;
+  const cellHeight = 60;
+  const textOffsetY = cellHeight / 2 + 5; // Adjust for text vertical alignment
+  const fontSize = "20px"; // Increased font size for better visibility
+
+  // Clear existing elements from the canvases
+  clearElem(canvas);
+  clearElem(canvas2);
+
+  // Draw cells on canvas1
+  for (let cellIndex = 0; cellIndex < str.length; ++cellIndex) {
+    const isActive = cellIndex === activeCellIndex;
+
+    // Create the rectangle for each cell
+    const cell = newElementNS("rect", [
+      ["id", "state_rect_" + cellIndex],
+      ["x", startX + cellIndex * cellWidth],
+      ["y", startY],
+      ["width", cellWidth],
+      ["height", cellHeight],
       ["rx", "10"],
       ["stroke", color],
-      ["fill", fillColor],
-      ["stroke-width", stroke_width]
+      ["fill", isActive ? fillActive : fillDefault],
+      ["stroke-width", strokeWidth],
     ]);
-    canvas1.appendChild(cell);
+    canvas.appendChild(cell);
 
-    cellText = newElementNS('text', [
-      ["id", "cell_text_"+cell_itr],
-      ['x', start_x+(cell_itr*cell_width)+cell_width/2],
-      ['y', start_y+cell_height/2],
-      ['fill', '#000']
+    // Create the text for each cell, centered within the rectangle
+    const cellText = newElementNS("text", [
+      ["id", "cell_text_" + cellIndex],
+      ["x", startX + cellIndex * cellWidth + cellWidth / 2], // Center horizontally
+      ["y", startY + textOffsetY], // Center vertically
+      ["text-anchor", "middle"], // Align text horizontally
+      ["dominant-baseline", "middle"], // Align text vertically
+      ["fill", "#000"],
+      ["font-size", fontSize], // Increased font size
+      ["font-family", "Arial, sans-serif"],
     ]);
-    cellText.textContent = dtm["input"][inputIndex][path_setting][stateIndex][0][cell_itr];
-    canvas1.appendChild(cellText);
+    cellText.textContent = str[cellIndex];
+    canvas.appendChild(cellText);
   }
-  
-  state = newElementNS('rect', [
-      ["id", "state_rect"],
-      ["x", "10"],
-      ["y", "10"],
-      ["width", cell_width],
-      ["height", cell_height],
-      ["rx", "10"],
-      ["stroke", color],
-      ["fill", "#ffe4c4"],
-      ["stroke-width", stroke_width]
+
+  // Draw current state on canvas2
+  const state = newElementNS("rect", [
+    ["id", "state_rect"],
+    ["x", "10"],
+    ["y", "10"],
+    ["width", cellWidth],
+    ["height", cellHeight],
+    ["rx", "10"],
+    ["stroke", color],
+    ["fill", fillDefault],
+    ["stroke-width", strokeWidth],
   ]);
-  textElem = newElementNS('text', [
-      ["id", "state_text"],
-      ['x', cell_width/2],
-      ['y', start_y+cell_height/2],
-      ['fill', '#000']
-  ]);
-  textElem.textContent = dtm["input"][inputIndex][path_setting][stateIndex][2];
   canvas2.appendChild(state);
+
+  // Add text for the current state, centered within the rectangle
+  const textElem = newElementNS("text", [
+    ["id", "state_text"],
+    ["x", 10 + cellWidth / 2], // Center horizontally
+    ["y", 10 + textOffsetY], // Center vertically
+    ["text-anchor", "middle"],
+    ["dominant-baseline", "middle"],
+    ["fill", "#000"],
+    ["font-size", fontSize], // Increased font size
+    ["font-family", "Arial, sans-serif"],
+  ]);
+  textElem.textContent = currentState;
   canvas2.appendChild(textElem);
 }
