@@ -1,0 +1,209 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the main difference between a Deterministic Turing Machine (DTM) and a Non-Deterministic Turing Machine (NDTM)?",
+      "answers": {
+        "a": "DTM has multiple tapes while NDTM has only one tape",
+        "b": "DTM follows a single computation path while NDTM can explore multiple paths simultaneously",
+        "c": "DTM is faster than NDTM in all cases",
+        "d": "DTM uses binary alphabet while NDTM uses any alphabet"
+      },
+      "explanations": {
+        "a": "Incorrect: Both DTM and NDTM can have single or multiple tapes.",
+        "b": "Correct: The key difference is that DTM follows deterministic transitions while NDTM can have multiple possible transitions from a given state-symbol combination.",
+        "c": "Incorrect: Speed comparison depends on the specific problem and implementation.",
+        "d": "Incorrect: Both can use any finite alphabet."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does the 'non-deterministic' aspect of NDTM refer to?",
+      "answers": {
+        "a": "The machine makes random choices",
+        "b": "The machine can be in multiple states at the same time",
+        "c": "The machine can have multiple possible transitions for the same state-symbol pair",
+        "d": "The machine cannot halt"
+      },
+      "explanations": {
+        "a": "Incorrect: Non-determinism is not about randomness but about multiple possible choices.",
+        "b": "Incorrect: The machine is in one state at a time, but can explore multiple computation paths.",
+        "c": "Correct: Non-determinism means there can be multiple valid transitions from a given configuration.",
+        "d": "Incorrect: NDTMs can halt just like DTMs."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which class of languages do Turing Machines (both DTM and NDTM) recognize?",
+      "answers": {
+        "a": "Regular Languages",
+        "b": "Context-Free Languages",
+        "c": "Context-Sensitive Languages",
+        "d": "Recursively Enumerable Languages"
+      },
+      "explanations": {
+        "a": "Incorrect: Regular languages are recognized by finite automata.",
+        "b": "Incorrect: Context-free languages are recognized by pushdown automata.",
+        "c": "Incorrect: Context-sensitive languages are recognized by linear bounded automata.",
+        "d": "Correct: Turing machines recognize the class of recursively enumerable languages."
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the relationship between DTM and NDTM in terms of computational power?",
+      "answers": {
+        "a": "NDTM is more powerful than DTM",
+        "b": "DTM is more powerful than NDTM",
+        "c": "They have equivalent computational power",
+        "d": "Their power depends on the specific problem"
+      },
+      "explanations": {
+        "a": "Incorrect: They have the same computational power in terms of what languages they can recognize.",
+        "b": "Incorrect: DTM is not more powerful than NDTM.",
+        "c": "Correct: DTM and NDTM have equivalent computational power - they recognize the same class of languages.",
+        "d": "Incorrect: Their computational power is equivalent regardless of the problem."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does the complexity class P represent?",
+      "answers": {
+        "a": "Problems solvable by NDTM in polynomial time",
+        "b": "Problems solvable by DTM in polynomial time",
+        "c": "Problems that are undecidable",
+        "d": "Problems solvable in exponential time"
+      },
+      "explanations": {
+        "a": "Incorrect: This describes the class NP.",
+        "b": "Correct: Class P consists of problems that can be solved by a deterministic Turing machine in polynomial time.",
+        "c": "Incorrect: Undecidable problems are not in P.",
+        "d": "Incorrect: P specifically refers to polynomial time, not exponential."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does the complexity class NP represent?",
+      "answers": {
+        "a": "Problems that cannot be solved in polynomial time",
+        "b": "Problems solvable by NDTM in polynomial time",
+        "c": "Problems that are undecidable",
+        "d": "Problems solvable only in exponential time"
+      },
+      "explanations": {
+        "a": "Incorrect: NP problems can potentially be solved in polynomial time.",
+        "b": "Correct: Class NP consists of problems that can be solved by a non-deterministic Turing machine in polynomial time.",
+        "c": "Incorrect: NP problems are decidable.",
+        "d": "Incorrect: We don't know if NP problems require exponential time."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following is an equivalent definition of NP?",
+      "answers": {
+        "a": "Problems that can be solved in polynomial time",
+        "b": "Problems whose solutions can be verified in polynomial time",
+        "c": "Problems that require exponential time to solve",
+        "d": "Problems that are undecidable"
+      },
+      "explanations": {
+        "a": "Incorrect: This describes class P.",
+        "b": "Correct: NP can be equivalently defined as problems whose solutions can be verified by a DTM in polynomial time.",
+        "c": "Incorrect: We don't know if NP problems require exponential time.",
+        "d": "Incorrect: NP problems are decidable."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "The Traveling Salesman Problem (TSP) decision version is in which complexity class?",
+      "answers": {
+        "a": "P",
+        "b": "NP",
+        "c": "NP-Hard",
+        "d": "Undecidable"
+      },
+      "explanations": {
+        "a": "Incorrect: TSP is not known to be in P.",
+        "b": "Correct: The decision version of TSP is in NP because given a tour, we can verify in polynomial time if it visits all cities and has length ≤ k.",
+        "c": "Incorrect: While TSP is NP-Hard, the question asks about the decision version which is in NP.",
+        "d": "Incorrect: TSP is decidable."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What is the main practical limitation of NDTMs?",
+      "answers": {
+        "a": "They cannot solve any useful problems",
+        "b": "They are slower than DTMs",
+        "c": "They cannot be physically implemented",
+        "d": "They use too much memory"
+      },
+      "explanations": {
+        "a": "Incorrect: NDTMs are useful for theoretical analysis of computational complexity.",
+        "b": "Incorrect: Speed comparison is not the main limitation.",
+        "c": "Correct: NDTMs are theoretical constructs that cannot be physically implemented because they would require infinite parallelism.",
+        "d": "Incorrect: Memory usage is not the primary limitation."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In the context of NDTMs, what does 'guessing' refer to?",
+      "answers": {
+        "a": "Making random choices",
+        "b": "Using probability to make decisions",
+        "c": "Exploring all possible computation paths simultaneously",
+        "d": "Using heuristics to find solutions"
+      },
+      "explanations": {
+        "a": "Incorrect: Guessing in NDTMs is not random.",
+        "b": "Incorrect: This describes probabilistic Turing machines, not NDTMs.",
+        "c": "Correct: In NDTM theory, 'guessing' means the machine can explore all possible computation paths in parallel.",
+        "d": "Incorrect: NDTMs don't use heuristics."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following problems is typically used as an example of an NP problem?",
+      "answers": {
+        "a": "Sorting an array",
+        "b": "Finding the shortest path in a graph",
+        "c": "Sudoku solving",
+        "d": "Binary search"
+      },
+      "explanations": {
+        "a": "Incorrect: Sorting can be done in polynomial time by DTM (class P).",
+        "b": "Incorrect: Shortest path algorithms like Dijkstra's run in polynomial time (class P).",
+        "c": "Correct: Sudoku is an NP problem - given a completed grid, we can verify it's correct in polynomial time, but finding the solution may be harder.",
+        "d": "Incorrect: Binary search runs in logarithmic time (class P)."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the significance of the P vs NP problem?",
+      "answers": {
+        "a": "It determines which problems are solvable",
+        "b": "It asks whether every problem verifiable in polynomial time is also solvable in polynomial time",
+        "c": "It compares the speed of different algorithms",
+        "d": "It determines the memory requirements of algorithms"
+      },
+      "explanations": {
+        "a": "Incorrect: The P vs NP problem doesn't determine solvability but efficiency.",
+        "b": "Correct: P vs NP asks whether P = NP, i.e., whether every problem whose solution can be verified quickly can also be solved quickly.",
+        "c": "Incorrect: It's not about comparing specific algorithms but complexity classes.",
+        "d": "Incorrect: It's about time complexity, not memory requirements."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    }
+  ]
+}

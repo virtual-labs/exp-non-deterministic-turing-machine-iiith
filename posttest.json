@@ -1,0 +1,294 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "The exploration of multiple paths in a non-deterministic Turing machine (NDTM) is significant because it:",
+      "answers": {
+        "a": "Guarantees a solution to NP problems",
+        "b": "Demonstrates a (theoretical) way to solve problems that may not be efficiently solvable by deterministic machines",
+        "c": "Makes NDTMs faster than deterministic machines",
+        "d": "Allows NDTMs to solve problems outside of NP"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A deterministic Turing machine is characterized by:",
+      "answers": {
+        "a": "Exploring multiple computational paths simultaneously",
+        "b": "Making random decisions at each step",
+        "c": "Following a single, defined computational path for a given input",
+        "d": "Solving problems that non-deterministic machines cannot"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement is true about regular languages?",
+      "answers": {
+        "a": "They can only be recognized by non-deterministic machines",
+        "b": "They are more complex than context-free languages",
+        "c": "They are recognized by both deterministic and non-deterministic finite automata",
+        "d": "They require Turing machines (or higher) for recognition"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does it mean for a problem to be NP-hard?",
+      "answers": {
+        "a": "It can be solved in polynomial time",
+        "b": "Its solution can be verified in polynomial time",
+        "c": "It is at least as hard as the hardest problems in NP",
+        "d": "It is solvable by non-deterministic machines only"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In computational theory, 'NP' refers to problems where:",
+      "answers": {
+        "a": "Solutions can be found in non-polynomial time",
+        "b": "Solutions can be verified in polynomial time by a DTM",
+        "c": "Deterministic machines can find solutions faster than non-deterministic machines",
+        "d": "Solutions are always available but hard to compute"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How does an NDTM 'solve' the Traveling Salesman Problem in polynomial time?",
+      "answers": {
+        "a": "By using a more efficient algorithm than DTM",
+        "b": "By exploring all possible tours simultaneously and selecting the shortest one",
+        "c": "By using heuristics to approximate the solution",
+        "d": "By reducing the problem to a simpler one"
+      },
+      "explanations": {
+        "a": "Incorrect: NDTMs don't use different algorithms, they use non-deterministic computation.",
+        "b": "Correct: An NDTM can theoretically explore all possible tours in parallel and non-deterministically choose the optimal path.",
+        "c": "Incorrect: NDTMs don't use heuristics or approximations.",
+        "d": "Incorrect: This describes problem reduction, not NDTM computation."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the key insight behind the equivalence of 'NDTM solvable in polynomial time' and 'DTM verifiable in polynomial time'?",
+      "answers": {
+        "a": "Both require the same amount of memory",
+        "b": "If an NDTM can find a solution quickly, a DTM can verify that solution quickly",
+        "c": "Both use the same algorithms",
+        "d": "Both have the same time complexity"
+      },
+      "explanations": {
+        "a": "Incorrect: Memory requirements are not the key insight.",
+        "b": "Correct: If an NDTM can solve a problem in polynomial time, it means there exists a polynomial-length solution path that a DTM can verify in polynomial time.",
+        "c": "Incorrect: They don't necessarily use the same algorithms.",
+        "d": "Incorrect: The time complexities may differ between solving and verifying."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Why is the optimization version of TSP considered NP-Hard rather than just NP?",
+      "answers": {
+        "a": "It requires exponential time to solve",
+        "b": "It asks for the best solution, not just a yes/no answer",
+        "c": "It cannot be verified in polynomial time",
+        "d": "It is undecidable"
+      },
+      "explanations": {
+        "a": "Incorrect: We don't know if it requires exponential time.",
+        "b": "Correct: NP-Hard problems are optimization problems that ask for the best solution, while NP problems are decision problems with yes/no answers.",
+        "c": "Incorrect: The solution can be verified, but finding the optimal solution is harder.",
+        "d": "Incorrect: TSP optimization is decidable."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does it mean for a problem to be NP-Complete?",
+      "answers": {
+        "a": "It is both in NP and NP-Hard",
+        "b": "It can be solved in polynomial time",
+        "c": "It is the hardest problem in computer science",
+        "d": "It cannot be solved by any algorithm"
+      },
+      "explanations": {
+        "a": "Correct: NP-Complete problems are in NP (verifiable in polynomial time) and NP-Hard (as hard as any problem in NP).",
+        "b": "Incorrect: We don't know if NP-Complete problems can be solved in polynomial time.",
+        "c": "Incorrect: There are problems harder than NP-Complete.",
+        "d": "Incorrect: NP-Complete problems are solvable, just potentially not efficiently."
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "In the context of Sudoku as an NP problem, what can be verified in polynomial time?",
+      "answers": {
+        "a": "Whether a puzzle has a unique solution",
+        "b": "Whether a completed grid satisfies all Sudoku constraints",
+        "c": "The minimum number of clues needed for a valid puzzle",
+        "d": "Whether a puzzle is the hardest possible"
+      },
+      "explanations": {
+        "a": "Incorrect: Checking uniqueness requires finding all solutions, which is harder.",
+        "b": "Correct: Given a completed 9x9 grid, we can quickly verify that each row, column, and 3x3 box contains digits 1-9 exactly once.",
+        "c": "Incorrect: This is a more complex optimization problem.",
+        "d": "Incorrect: Difficulty measurement is subjective and complex."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the main theoretical advantage of NDTMs over DTMs?",
+      "answers": {
+        "a": "They can solve undecidable problems",
+        "b": "They can potentially solve certain problems faster",
+        "c": "They use less memory",
+        "d": "They are easier to program"
+      },
+      "explanations": {
+        "a": "Incorrect: NDTMs cannot solve undecidable problems.",
+        "b": "Correct: NDTMs can potentially solve NP problems in polynomial time, while it's unknown if DTMs can do the same.",
+        "c": "Incorrect: Memory usage is not the main advantage.",
+        "d": "Incorrect: Programming complexity is not the main theoretical consideration."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How does the 'librarian analogy' help explain NDTM operation?",
+      "answers": {
+        "a": "The librarian can read multiple books simultaneously",
+        "b": "The librarian can clone themselves to explore different paths",
+        "c": "The librarian has perfect memory of all books",
+        "d": "The librarian can rearrange the entire library instantly"
+      },
+      "explanations": {
+        "a": "Incorrect: This doesn't capture the essence of non-determinism.",
+        "b": "Correct: The cloning represents the NDTM's ability to explore multiple computation paths simultaneously.",
+        "c": "Incorrect: Memory is not the key aspect of the analogy.",
+        "d": "Incorrect: This doesn't represent non-deterministic computation."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the relationship between NP and co-NP?",
+      "answers": {
+        "a": "They are the same class",
+        "b": "co-NP contains the complements of NP problems",
+        "c": "co-NP is harder than NP",
+        "d": "co-NP problems cannot be verified"
+      },
+      "explanations": {
+        "a": "Incorrect: It's unknown whether NP = co-NP.",
+        "b": "Correct: co-NP consists of problems whose complements are in NP.",
+        "c": "Incorrect: The relative difficulty is unknown.",
+        "d": "Incorrect: co-NP problems can be verified, but their 'no' instances can be verified in polynomial time."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Why can't NDTMs be physically implemented?",
+      "answers": {
+        "a": "They require infinite memory",
+        "b": "They need to explore exponentially many paths simultaneously",
+        "c": "They violate the laws of physics",
+        "d": "They require quantum computers"
+      },
+      "explanations": {
+        "a": "Incorrect: Memory is not the main implementation barrier.",
+        "b": "Correct: True non-determinism would require exploring potentially exponentially many computation paths in parallel, which is physically impossible.",
+        "c": "Incorrect: They don't violate physics, they're just practically impossible.",
+        "d": "Incorrect: Quantum computers are different from NDTMs."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the difference between NDTMs and Probabilistic Turing Machines (PTMs)?",
+      "answers": {
+        "a": "NDTMs are faster than PTMs",
+        "b": "NDTMs explore all paths while PTMs choose paths probabilistically",
+        "c": "PTMs can solve harder problems than NDTMs",
+        "d": "There is no difference"
+      },
+      "explanations": {
+        "a": "Incorrect: Speed is not the distinguishing factor.",
+        "b": "Correct: NDTMs theoretically explore all possible paths simultaneously, while PTMs make probabilistic choices and follow one path.",
+        "c": "Incorrect: They have different computational models but similar power.",
+        "d": "Incorrect: They are fundamentally different computational models."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "In practice, how do we simulate NDTM computation?",
+      "answers": {
+        "a": "By using quantum computers",
+        "b": "By using parallel processing",
+        "c": "By systematically exploring all possible computation paths using backtracking",
+        "d": "By using approximation algorithms"
+      },
+      "explanations": {
+        "a": "Incorrect: Quantum computers are different from NDTMs.",
+        "b": "Incorrect: Parallel processing can't achieve true non-determinism.",
+        "c": "Correct: We simulate NDTMs by systematically exploring all possible computation paths, often using backtracking or breadth-first search.",
+        "d": "Incorrect: Approximation doesn't simulate true NDTM behavior."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What would be the implications if P = NP were proven true?",
+      "answers": {
+        "a": "All problems would become solvable",
+        "b": "Cryptography would become impossible",
+        "c": "Many currently difficult problems would have efficient solutions",
+        "d": "Computers would become infinitely fast"
+      },
+      "explanations": {
+        "a": "Incorrect: Undecidable problems would still exist.",
+        "b": "Incorrect: Some cryptographic methods might be affected, but not all cryptography.",
+        "c": "Correct: If P = NP, then all NP problems (including many currently intractable ones) would have polynomial-time solutions.",
+        "d": "Incorrect: This doesn't relate to computer speed but algorithmic efficiency."
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    }
+  ]
+}
