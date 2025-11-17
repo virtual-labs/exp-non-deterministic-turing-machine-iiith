@@ -1,118 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NDTM Simulation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/interactive.css">
+  <link rel="stylesheet" href="css/visualizer.css">
+  <script src="mobile-detection.js"></script>
 </head>
-<body style="padding:100px;">
+<body>
   <div class="container">
-    <div class="columns is-centered">
-			<div class="column">
-				<div class="v-collapsible-instruction-container v-instruction-container">
-					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a non-deterministic turing machine</div>
-					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ul style="list-style: disc;">
-							<li> <strong>Change NDTM</strong> button switches to a different NDTM</li>
-              <li><strong>Change input</strong> changes the input given to the NDTM</li>
-              <li><strong>Next</strong> displays the next step in DTM simulation</li>
-              <li><strong>Prev</strong> displays the previous step in DTM simulation</li>
-              <li>Toggle <strong>Reject path</strong> to switch between accepting paths and rejecting paths</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-  </div>
+    <!-- Quick Guide Section -->
+    <div class="guide-container">
+      <div class="guide-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 8v4M12 16h.01"></path>
+        </svg>
+        <h2>Quick Guide</h2>
+      </div>
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="step-number purple">1</div>
+          <div class="step-text">Use "Change NDTM" to select a different NDTM</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number blue">2</div>
+          <div class="step-text">Use "Change Input" to try different inputs</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number green">3</div>
+          <div class="step-text">Select next state, symbol, and direction in interactive mode</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number red">4</div>
+          <div class="step-text">Use "Show Hint" or "Apply Best Move" if needed</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number purple">5</div>
+          <div class="step-text">Alternate between paths to explore both accepting and rejecting scenarios</div>
+        </div>
+      </div>
+    </div>
 
-    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
-  		<div class="column is-2-desktop is-12-tablet is-12-mobile">
-  			<div class="v-datalist-container" style="height:400px;">
-  				<div class="v-datalist-title">NDTM controls</div>
-  				<div class="v-datalist-row" id="toolbar"
-          style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
-            <button id="change_ndtm" type="button" name="button" class="v-button">
-              change NDTM
-            </button>
-            <button id="change_input" type="button" name="button" class="v-button">
-              change input
-            </button>
-            <button id="next" type="button" name="button" class="v-button">
-              Next
-            </button>
-            <button id="prev" type="button" name="button" class="v-button">
-              Previous
-            </button>
-            <div class="">
-              <input type="checkbox" id="path_switch" />
-              <label for="path_switch">Reject path</label>
-            </div>
-  				</div>
-  			</div>
-  		</div>
-  		<div class="column is-7-desktop is-12-tablet is-12-mobile">
-  			<div class="v-datalist-container" style="height:400px;" id="circuit-board">
-  				<div id="working-area">
-            <div id="NDTM_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
-            </div>
-            <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
-            </div>
-            <div id="transition_table_container" class="is-centered is-flex-direction-row is-align-content-center" style="display: flex; justify-content:center; align-items: center;">
-            </div>
-            <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;">
-              <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
-              </svg>
-              <svg id="canvas2" width='100' height='200' xmlns="http://www.w3.org/2000/svg">
-              </svg>
-              <!-- <rect x="10" y="150" width="80" height="40"
-              style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /> -->
-            </div>
-  				</div>
-  			</div>
-  		</div>
-  		<div class="column is-3-desktop is-12-tablet is-12-mobile">
-        <div class="v-datalist-container" style="height:400px;" id="stack_container">
-          <ul id="stack_list" style="height:400px;overflow-y:auto;">
-
+    <!-- Main Content Panels -->
+    <div class="main-panels">
+      <!-- Left Path Steps Panel -->
+      <div class="panel steps-panel steps-panel-left">
+        <h3 class="panel-title">Accepting Path</h3>
+        <div class="trace-container">
+          <ul id="stack_list_left">
+            <!-- Will be populated by JavaScript -->
           </ul>
         </div>
-  		</div>
-  	</div>
+      </div>
+      <!-- Main Experiment Area -->
+      <div class="panel experiment-panel">
+        <!-- Mode Tabs -->
+        <div class="mode-tabs-container">
+          <div class="mode-tabs">
+            <button id="hard_mode_tab" class="mode-tab active">Hard Mode</button>
+            <button id="easy_mode_tab" class="mode-tab">Easy Mode</button>
+          </div>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./js/helper.js"></script>
-    <script src="./js/data.js"></script>
-    <script src="./js/main.js"></script>
+        <!-- Controls (horizontal at the top) -->
+        <div class="controls-container">
+          <div class="controls-title">Controls:</div>
+          <div class="horizontal-controls">
+            <button id="change_ndtm" class="button blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+              Change NDTM
+            </button>
+            <button id="change_input" class="button purple">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              Change Input
+            </button>
+            <button id="prev" class="button green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              Previous Step
+            </button>
+            <button id="apply_best_move" class="button red">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Apply Best Move
+            </button>
+            <button id="open_visual_tutorial" class="button blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7h18M3 12h18M3 17h18"></path>
+              </svg>
+              Visual Tutorial
+            </button>
+          </div>
+        </div>
+
+        <!-- NDTM Description Area -->
+        <div id="NDTM_description_container" class="ndtm-description">
+          <!-- Will be populated by JavaScript -->
+        </div>
+        
+        <!-- Input String (Shared) - Now in highlighted box -->
+        <div class="input-string-highlighted-container">
+          <div class="input-string-label">Input String:</div>
+          <div id="input_container_shared">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Parallel NDTM Simulations Container -->
+        <div class="parallel-simulations-container">
+          <!-- Left Simulation (Accepting Path) -->
+          <div class="simulation-column">
+            <div class="simulation-type-container">
+              <div id="simulation_type_left" class="simulation-type active-simulation">Accepting Path</div>
+            </div>
+            
+            <div class="ndtm-visualization">
+              <svg id="canvas1_left" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Will be populated by JavaScript -->
+              </svg>
+              <svg id="canvas2_left" width="100" height="200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Will be populated by JavaScript -->
+              </svg>
+            </div>
+          </div>
+
+          <!-- Right Simulation (Rejecting Path) -->
+          <div class="simulation-column">
+            <div class="simulation-type-container">
+              <div id="simulation_type_right" class="simulation-type">Rejecting Path</div>
+            </div>
+            
+            <div class="ndtm-visualization">
+              <svg id="canvas1_right" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Will be populated by JavaScript -->
+              </svg>
+              <svg id="canvas2_right" width="100" height="200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Will be populated by JavaScript -->
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manual Move Selection (Hard Mode Only) -->
+        <div id="hard_mode_controls" class="manual-controls-container">
+          <div class="manual-controls">
+            <div class="control-group">
+              <label for="state_select">Next State:</label>
+              <select id="state_select" class="control-select">
+                <option value="">Select State</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="write_select">Write Symbol:</label>
+              <select id="write_select" class="control-select">
+                <option value="">Select Symbol</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="move_select">Move Direction:</label>
+              <select id="move_select" class="control-select">
+                <option value="">Select Direction</option>
+                <option value="L">Left</option>
+                <option value="R">Right</option>
+                <option value="S">Stay</option>
+              </select>
+            </div>
+            <button id="apply_manual_move" class="button red">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Apply Move
+            </button>
+          </div>
+        </div>
+
+        <!-- Transition Table (Shared) -->
+        <div class="transition-table-container">
+          <h4 class="section-title">Transition Table:</h4>
+          <div id="transition_table_container">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Path Steps Panel -->
+      <div class="panel steps-panel steps-panel-right">
+        <h3 class="panel-title">Rejecting Path</h3>
+        <div class="trace-container">
+          <ul id="stack_list_right">
+            <!-- Will be populated by JavaScript -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/helper.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/interactive_simple.js"></script>
+  <script src="js/mode_switcher.js"></script>
+  <script src="js/visualizer.js"></script>
 </body>
 </html>
-
-<!--
-
-<div class="container">
-  <div id="header" class="columns is-centered is-flex-direction-column is-flex-wrap-wrap is-align-content-center">
-    <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
-
-    </div>
-    <div class="">
-      <button id="change_dfa" type="button" name="button" class="primary-button">
-        change DFA
-      </button>
-      <button id="change_input" type="button" name="button" class="primary-button">
-        change input
-      </button>
-    </div>
-  </div>
-  <div id="body" class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
-    <div class="" style="display:flex;flex-direction:column;align-items:center;">
-      <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
-      </svg>
-    </div>
-    <div id="footer" class="">
-      <button id="next" type="button" name="button" class="primary-button">
-        Next
-      </button>
-    </div>
-  </div>
-</div>
-
- -->
