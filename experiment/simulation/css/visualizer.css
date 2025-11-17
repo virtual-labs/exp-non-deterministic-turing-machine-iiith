@@ -1,0 +1,132 @@
+/* Visualizer styles — follow the existing app theme (glass, rounded buttons) */
+.viz-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 20px;
+}
+.viz-modal {
+  width: 94%;
+  max-width: 1000px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.viz-header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.viz-title {
+  font-size:1rem;
+  font-weight:600;
+  color:#111827;
+}
+.viz-description {
+  font-size:0.85rem;
+  color:#6b7280;
+}
+.viz-top {
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.viz-fsm {
+  flex:1 1 70%;
+  min-height:340px; /* increased to give more space for the FSM */
+  background: linear-gradient(90deg, rgba(243,244,246,0.9), rgba(255,255,255,0.8));
+  border-radius:10px;
+  padding:12px;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 6px 20px rgba(59,130,246,0.05);
+  display:flex;
+  flex-direction:column;
+}
+.viz-tape {
+  flex:0 0 320px;
+  min-height:220px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border-radius:8px;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.viz-label {
+  font-size:0.8rem;
+  color:#374151;
+  font-weight:600;
+  padding:6px 8px;
+}
+.tape-row {
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding:6px;
+  width:100%;
+}
+.tape-cell {
+  min-width:48px;
+  height:48px;
+  border:1px solid rgba(14, 165, 233, 0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  background:#ffffff;
+  font-family: Inter, Arial, sans-serif;
+  font-size:16px;
+  color:#0f172a;
+}
+.tape-cell.head {
+  box-shadow: 0 2px 0 0 #3B82F6 inset;
+  transform: translateY(-4px);
+  transition: transform 200ms ease;
+  border-color: rgba(59,130,246,0.5);
+}
+.tape-cell.written {
+  background: #fff7ed;
+  transition: background 300ms ease;
+}
+.viz-controls {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.viz-controls .button {
+  padding:6px 10px;
+  cursor:pointer;
+  min-width:90px;
+}
+.viz-controls .button svg{ width:14px; height:14px }
+
+/* FSM SVG tweaks */
+#visual_fsm { width:100%; height:100%; display:block; }
+.viz-fsm .viz-label { margin-bottom:6px }
+.viz-fsm svg text { font-family: Inter, Arial, sans-serif; font-size:13px }
+.viz-fsm svg circle { transition: fill 200ms, r 200ms }
+.viz-close {
+  margin-left:auto;
+  background:transparent;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+}
+/* small responsive */
+@media (max-width:800px){
+  .viz-top{flex-direction:column}
+  .viz-tape{order:2}
+}
+
